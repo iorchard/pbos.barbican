@@ -1,0 +1,16 @@
+---
+openstack_release: "wallaby"
+keepalived_vip: ~
+os_service_name: "barbican"
+db_password: "{{ barbican_password }}"
+os_password: "{{ barbican_password }}"
+memcached_port: 11211
+keystone_port: 5000
+barbican_port: 9311
+os_endpoint_interface:
+  - public
+  - internal
+  - admin
+barbican_api_processes: 4
+barbican_kek: ~
+...

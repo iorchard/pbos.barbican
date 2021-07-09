@@ -1,0 +1,31 @@
+---
+- name: Setup | copy init file
+  ansible.builtin.copy:
+    dest: "{{ item.dest }}"
+    src: "{{ ansible_distribution | lower }}{{ item.dest }}"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  loop: "{{ os_service_init }}"
+  become: true
+
+- name: Setup | template configuration
+  ansible.builtin.template:
+    dest: "{{ item.dest }}"
+    src: "{{ ansible_distribution | lower }}{{ item.dest + '.j2' }}"
+    owner: "root"
+    group: "{{ os_service_name }}"
+    mode: "0640"
+    backup: true
+  loop: "{{ os_service_conf }}"
+  become: true
+  changed_when: true
+  notify:
+    - systemctl restart service
+
+- name: Setup | create db tables
+  ansible.builtin.shell: su -s /bin/sh -c "barbican-manage db upgrade" barbican
+  become: true
+  delegate_to: "{{ groups['barbican'][0] }}"
+  run_once: true
+...

@@ -1,0 +1,39 @@
+---
+prereq_pkgs:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - openstack-pkg-tools
+
+# osbpo apt repo keyring
+osbpo_keyring:
+  url: "http://osbpo.debian.net/osbpo/dists/pubkey.gpg"
+  file: "/usr/share/keyrings/osbpo-keyring.gpg"
+
+# osbpo apt repo
+osbpo_repos:
+  - repo: "deb [signed-by=/usr/share/keyrings/osbpo-keyring.gpg] http://osbpo.debian.net/osbpo bullseye-{{ openstack_release }}-backports main"
+    filename: "openstack"
+  - repo: "deb [signed-by=/usr/share/keyrings/osbpo-keyring.gpg] http://osbpo.debian.net/osbpo bullseye-{{ openstack_release }}-backports-nochange main"
+    filename: "openstack"
+
+packages:
+  - barbican-api
+  - barbican-keystone-listener
+  - barbican-worker
+
+os_service_init:
+  - {dest: "/etc/init.d/barbican-api"}
+  - {dest: "/etc/init.d/barbican-keystone-listener"}
+  - {dest: "/etc/init.d/barbican-worker"}
+
+os_service_conf: 
+  - {dest: "/etc/barbican/barbican.conf"}
+  - {dest: "/etc/barbican/barbican-api-uwsgi.ini"}
+  - {dest: "/etc/barbican/barbican-api-uwsgi-bind.ini"}
+
+os_systemd_service_name:
+  - barbican-api
+  - barbican-keystone-listener
+  - barbican-worker
+...

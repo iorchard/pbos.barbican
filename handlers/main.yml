@@ -1,0 +1,12 @@
+---
+- name: systemctl restart service
+  service:
+    name: "{{ item }}.service"
+    state: "restarted"
+    enabled: true
+  become: true
+  changed_when: false
+  register: restart_systemd_service
+  failed_when: restart_systemd_service.failed
+  loop: "{{ os_systemd_service_name }}"
+...

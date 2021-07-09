@@ -1,0 +1,16 @@
+galaxy_info:
+  namespace: pbos
+  role_name: barbican
+  author: "Heechul Kim <jijisa@iorchard.net>"
+  description: Ansible Role to install and setup Barbican for OpenStack
+  company: iOrchard, Inc.
+  license: Apache-2.0
+  min_ansible_version: "2.11"
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
+  galaxy_tags:
+    - system
+
+dependencies: []
