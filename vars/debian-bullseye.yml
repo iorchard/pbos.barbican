@@ -21,6 +21,7 @@ packages:
   - barbican-api
   - barbican-keystone-listener
   - barbican-worker
+  - python3-barbicanclient
 
 os_service_init:
   - {dest: "/etc/init.d/barbican-api"}
