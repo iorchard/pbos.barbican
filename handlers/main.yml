@@ -1,7 +1,7 @@
 ---
 - name: systemctl restart service
   service:
-    name: "{{ item }}.service"
+    name: "{{ item }}"
     state: "restarted"
     enabled: true
   become: true

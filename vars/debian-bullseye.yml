@@ -34,7 +34,7 @@ os_service_conf:
   - {dest: "/etc/barbican/barbican-api-uwsgi-bind.ini"}
 
 os_systemd_service_name:
-  - barbican-api
-  - barbican-keystone-listener
-  - barbican-worker
+  - barbican-api.service
+  - barbican-keystone-listener.service
+  - barbican-worker.service
 ...
