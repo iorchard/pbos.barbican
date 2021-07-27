@@ -1,5 +1,5 @@
 ---
-- name: Start | import common tasks
+- name: Stop | import common tasks
   tags: barbican
   ansible.builtin.import_tasks: "common.yml"
 
