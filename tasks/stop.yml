@@ -1,10 +1,14 @@
 ---
 - name: Stop | import common tasks
-  tags: barbican
+  tags:
+    - barbican
+    - openstack
   ansible.builtin.import_tasks: "common.yml"
 
 - name: Stop | stop service
-  tags: barbican
+  tags:
+    - barbican
+    - openstack
   block:
     - name: Stop | stop service
       ansible.builtin.service:

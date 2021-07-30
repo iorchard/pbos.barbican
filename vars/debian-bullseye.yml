@@ -1,4 +1,6 @@
 ---
+# apt state: latest or present
+apt_state: "latest"
 prereq_pkgs:
   - apt-transport-https
   - ca-certificates
