@@ -1,0 +1,35 @@
+---
+# apt state: latest or present
+apt_state: "latest"
+prereq_pkgs:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gpg
+  - openstack-pkg-tools
+
+packages:
+  - barbican-common
+  - barbican-api
+  - barbican-keystone-listener
+  - barbican-worker
+  - python3-barbicanclient
+
+os_service_init: []
+#  - {dest: "/etc/init.d/barbican-api"}
+#  - {dest: "/etc/init.d/barbican-keystone-listener"}
+#  - {dest: "/etc/init.d/barbican-worker"}
+
+os_conf_dir: "/etc/barbican"
+
+os_service_conf: 
+  - {dest: "{{ os_conf_dir }}/barbican.conf"}
+  - {dest: "/etc/apache2/conf-available/barbican-api.conf"}
+#  - {dest: "{{ os_conf_dir }}/barbican-api-uwsgi.ini"}
+#  - {dest: "{{ os_conf_dir }}/barbican-api-uwsgi-bind.ini"}
+
+os_systemd_service_name:
+  - apache2.service
+  - barbican-keystone-listener.service
+  - barbican-worker.service
+...

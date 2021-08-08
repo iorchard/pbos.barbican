@@ -2,17 +2,18 @@
 - name: Setup | copy init file
   ansible.builtin.copy:
     dest: "{{ item.dest }}"
-    src: "{{ ansible_distribution | lower }}{{ item.dest }}"
+    src: "{{ ansible_os_family | lower }}{{ item.dest }}"
     owner: "root"
     group: "root"
     mode: "0755"
   loop: "{{ os_service_init }}"
   become: true
+  when: ansible_distribution == "Debian"
 
 - name: Setup | template configuration
   ansible.builtin.template:
     dest: "{{ item.dest }}"
-    src: "{{ ansible_distribution | lower }}{{ item.dest + '.j2' }}"
+    src: "{{ ansible_os_family | lower }}{{ item.dest + '.j2' }}"
     owner: "root"
     group: "{{ os_service_name }}"
     mode: "0640"
@@ -22,6 +23,16 @@
   changed_when: true
   notify:
     - systemctl restart service
+
+- name: Setup | flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Setup | start haproxy service
+  ansible.builtin.service:
+    name: "haproxy.service"
+    state: "started"
+  become: true
+  when: ansible_distribution == "Ubuntu"
 
 - name: Setup | create db tables
   ansible.builtin.shell: su -s /bin/sh -c "barbican-manage db upgrade" barbican

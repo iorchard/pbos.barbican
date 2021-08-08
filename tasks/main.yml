@@ -2,12 +2,6 @@
 - name: Main | import common tasks
   ansible.builtin.import_tasks: "common.yml"
 
-- name: Main | include DB tasks
-  ansible.builtin.include_tasks: "db.yml"
-
-- name: Main | include openstack tasks
-  ansible.builtin.include_tasks: "openstack.yml"
-
 - name: Main | include os specific tasks
   ansible.builtin.include_tasks: "{{ lookup('first_found', _params) }}"
   vars:
@@ -22,6 +16,12 @@
       paths:
         - "."
 
+- name: Main | include DB tasks
+  ansible.builtin.include_tasks: "db.yml"
+
 - name: Main | include setup tasks
   ansible.builtin.include_tasks: "setup.yml"
+
+- name: Main | include openstack tasks
+  ansible.builtin.include_tasks: "openstack.yml"
 ...
