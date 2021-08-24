@@ -1,6 +1,6 @@
 ---
-# apt state: latest or present
-apt_state: "latest"
+# pkg state: latest or present
+pkg_state: "latest"
 prereq_pkgs:
   - apt-transport-https
   - ca-certificates
@@ -25,6 +25,8 @@ packages:
   - barbican-keystone-listener
   - barbican-worker
   - python3-barbicanclient
+
+mariadb_service_socket: "/run/mysqld/mysqld.sock"
 
 os_service_init:
   - {dest: "/etc/init.d/barbican-api"}

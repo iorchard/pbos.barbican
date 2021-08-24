@@ -1,0 +1,29 @@
+---
+# pkg state: latest or present
+pkg_state: "latest"
+prereq_pkgs:
+  - ca-certificates
+  - curl
+
+packages:
+  - openstack-barbican
+  - openstack-barbican-api
+  - openstack-barbican-keystone-listener
+  - openstack-barbican-worker
+  - python3-barbicanclient
+
+openstack_repo_rpm: "https://www.rdoproject.org/repos/rdo-release.el8.rpm"
+
+mariadb_service_socket: "/var/lib/mysql/mysql.sock"
+
+os_service_init: []
+
+os_conf_dir: "/etc/barbican"
+
+os_service_conf: 
+  - {dest: "{{ os_conf_dir }}/barbican.conf"}
+  - {dest: "/etc/httpd/conf.d/wsgi-barbican.conf"}
+
+os_systemd_service_name:
+  - httpd.service
+...

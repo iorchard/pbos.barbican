@@ -1,0 +1,39 @@
+[DEFAULT]
+sql_connection = mysql+pymysql://{{ os_service_name }}:{{ db_password }}@{{ keepalived_vip }}/barbican
+transport_url = rabbit://openstack:{{ rabbitmq_openstack_password }}@{{ keepalived_vip }}
+[certificate]
+[certificate_event]
+[cors]
+[crypto]
+enabled_crypto_plugins = simple_crypto
+[dogtag_plugin]
+[keystone_authtoken]
+www_authenticate_uri = http://{{ keepalived_vip }}:{{ keystone_port }}
+auth_url = http://{{ keepalived_vip }}:{{ keystone_port }}
+memcached_servers = {{ keepalived_vip }}:{{ memcached_port }}
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = {{ os_service_name }}
+password = {{ os_password }}
+[keystone_notifications]
+enable = True
+[kmip_plugin]
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_middleware]
+[oslo_policy]
+policy_dirs = /etc/barbican/policy.d
+[p11_crypto_plugin]
+[queue]
+[quotas]
+[retry_scheduler]
+[secretstore]
+enabled_secretstore_plugins = store_crypto
+[simple_crypto_plugin]
+kek = '{{ barbican_kek }}'
+[snakeoil_ca_plugin]
+[ssl]
