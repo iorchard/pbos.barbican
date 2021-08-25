@@ -24,6 +24,12 @@
   notify:
     - systemctl restart service
 
+- name: Setup | create db tables
+  ansible.builtin.shell: su -s /bin/sh -c "barbican-manage db upgrade" barbican
+  become: true
+  delegate_to: "{{ groups['barbican'][0] }}"
+  run_once: true
+
 - name: Setup | flush handlers
   ansible.builtin.meta: flush_handlers
 
@@ -33,10 +39,4 @@
     state: "started"
   become: true
   when: ansible_distribution == "Ubuntu"
-
-- name: Setup | create db tables
-  ansible.builtin.shell: su -s /bin/sh -c "barbican-manage db upgrade" barbican
-  become: true
-  delegate_to: "{{ groups['barbican'][0] }}"
-  run_once: true
 ...
