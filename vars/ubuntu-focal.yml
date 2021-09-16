@@ -28,7 +28,7 @@ os_service_conf:
   - {dest: "{{ os_conf_dir }}/barbican-api-uwsgi-bind.ini"}
 
 os_systemd_service_name:
-  - apache2.service
-  - barbican-keystone-listener.service
-  - barbican-worker.service
+    - {name: "apache2.service", state: "reload"}
+    - {name: "barbican-keystone-listener.service", state: "restart"}
+    - {name: "barbican-worker.service", state: "restart"}
 ...

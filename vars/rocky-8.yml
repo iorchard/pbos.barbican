@@ -25,5 +25,5 @@ os_service_conf:
   - {dest: "/etc/httpd/conf.d/wsgi-barbican.conf"}
 
 os_systemd_service_name:
-  - httpd.service
+  - {name: "httpd.service", state: "reloaded"}
 ...

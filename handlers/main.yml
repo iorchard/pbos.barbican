@@ -1,8 +1,8 @@
 ---
 - name: systemctl restart service
-  service:
-    name: "{{ item }}"
-    state: "restarted"
+  ansible.builtin.service:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
     enabled: true
   register: _restart_service
   until: _restart_service.state == "started"
