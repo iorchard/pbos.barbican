@@ -13,4 +13,7 @@ os_endpoint_interface:
   - admin
 barbican_api_processes: 4
 barbican_kek: ~
+rabbitmq_tls_port: 5671
+mariadb_ca_cert: "/etc/my.cnf.d/certificates/ca-cert.pem"
+rabbitmq_ca_cert: "/etc/rabbitmq/certificates/ca-cert.pem"
 ...
