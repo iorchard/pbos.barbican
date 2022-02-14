@@ -1,7 +1,11 @@
 pbos.barbican
 ==============
 
-Ansible role to install and setup Barbican for OpenStack 
+Ansible role to install and setup Barbican for OpenStack.
+
+Barbican is a Key Manager for the secure storage, provisioning and
+management of secrets such as passwords, encryption keys, and X.509
+Certificates.
 
 Requirements
 ------------
@@ -10,7 +14,7 @@ This role requires Ansible 2.11 or higher.
 
 This role supports:
 
-  - Debian 11 (bullseye)
+  - Rocky Linux 8.x
 
 Role Variables
 --------------
