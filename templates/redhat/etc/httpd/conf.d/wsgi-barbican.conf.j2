@@ -10,7 +10,7 @@ Listen {{ ansible_host }}:{{ barbican_port }}
     CustomLog "/var/log/httpd/barbican_access.log" combined
 
     WSGIApplicationGroup %{GLOBAL}
-    WSGIDaemonProcess barbican-api display-name=barbican-api group=barbican processes=2 threads=8 user=barbican
+    WSGIDaemonProcess barbican-api display-name=barbican-api group=barbican processes=4 threads=1 user=barbican
     WSGIProcessGroup barbican-api
     WSGIScriptAlias / "/usr/lib/python3.6/site-packages/barbican/api/app.wsgi"
     WSGIPassAuthorization On
