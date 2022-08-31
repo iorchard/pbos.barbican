@@ -1,7 +1,7 @@
 [DEFAULT]
 sql_connection = mysql+pymysql://{{ os_service_name }}:{{ db_password }}@{{ keepalived_vip }}/{{ os_service_name }}?charset=utf8&ssl_ca={{ mariadb_ca_cert }}
 transport_url = rabbit://openstack:{{ rabbitmq_openstack_password }}@{{ keepalived_vip }}:{{ rabbitmq_tls_port }}
-log_dir = /var/log/barbican
+log_dir = /var/log/{{ os_service_name }}
 [certificate]
 [certificate_event]
 [cors]
