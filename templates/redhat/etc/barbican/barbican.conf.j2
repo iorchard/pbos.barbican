@@ -1,6 +1,7 @@
 [DEFAULT]
 sql_connection = mysql+pymysql://{{ os_service_name }}:{{ db_password }}@{{ keepalived_vip }}/{{ os_service_name }}?charset=utf8&ssl_ca={{ mariadb_ca_cert }}
 transport_url = rabbit://openstack:{{ rabbitmq_openstack_password }}@{{ keepalived_vip }}:{{ rabbitmq_tls_port }}
+log_dir = /var/log/barbican
 [certificate]
 [certificate_event]
 [cors]
@@ -28,6 +29,8 @@ enable = True
 ssl=true
 ssl_version=TLSv1_2
 ssl_ca_file={{ rabbitmq_ca_cert }}
+rabbit_quorum_queue=True
+
 [oslo_middleware]
 [oslo_policy]
 policy_dirs = /etc/barbican/policy.d
